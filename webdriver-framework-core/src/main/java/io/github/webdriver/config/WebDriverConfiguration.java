@@ -4,12 +4,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WebDriverConfiguration {
-
-    private String name;
 
     private String testEndpoint;
 
@@ -40,14 +40,6 @@ public class WebDriverConfiguration {
                 break;
         }
         return activePlatforms;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getTestEndpoint() {
@@ -97,5 +89,12 @@ public class WebDriverConfiguration {
 
     public Map<String, String> getNamedTestUrls() {
         return this.namedTestUrls;
+    }
+
+    public String getNamedUrl(String name) {
+        if (StringUtils.isEmpty(name)) {
+            return "";
+        }
+        return this.namedTestUrls.get(name);
     }
 }

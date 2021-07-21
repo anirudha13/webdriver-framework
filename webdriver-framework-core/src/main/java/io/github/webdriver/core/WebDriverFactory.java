@@ -129,6 +129,10 @@ public class WebDriverFactory {
         return this.webDriverConfiguration.getNamedTestUrls();
     }
 
+    public static String getNamedUrl(String name) {
+        return getInstance().webDriverConfiguration.getNamedUrl(name);
+    }
+
     public DriverType getDriverType() {
         return webDriverConfiguration.getDriverType();
     }
@@ -265,10 +269,6 @@ public class WebDriverFactory {
             buildSuffix = System.getenv(BUILD_ID);
         }
         return buildName + "-" + buildSuffix;
-    }
-
-    public String getSuiteName(){
-        return webDriverConfiguration.getName();
     }
 
 }
