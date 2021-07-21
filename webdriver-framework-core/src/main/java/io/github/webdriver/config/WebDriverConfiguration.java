@@ -2,7 +2,9 @@ package io.github.webdriver.config;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WebDriverConfiguration {
@@ -10,6 +12,8 @@ public class WebDriverConfiguration {
     private String name;
 
     private String testEndpoint;
+
+    private Map<String, String> namedTestUrls;
 
     private DriverType driverType;
 
@@ -84,5 +88,14 @@ public class WebDriverConfiguration {
 
     public void setCloudDriverConfig(RemoteDriverConfig cloudDriverConfig) {
         this.cloudDriverConfig = cloudDriverConfig;
+    }
+
+    @JsonAnySetter
+    public void setNamedTestUrls(String key, String value) {
+        this.namedTestUrls.put(key, value);
+    }
+
+    public Map<String, String> getNamedTestUrls() {
+        return this.namedTestUrls;
     }
 }

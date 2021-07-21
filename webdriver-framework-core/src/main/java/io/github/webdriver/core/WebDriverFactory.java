@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -37,7 +38,7 @@ import io.github.webdriver.config.WebDriverConfiguration;
 public class WebDriverFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverFactory.class);
-    private static final String CAPABILITIES_FILE_PROP = "capabilities.config";
+    protected static final String CAPABILITIES_FILE_PROP = "capabilities.config";
     private static final String DEFAULT_CAPABILITIES_FILE = "capabilities.yml";
     private static final String BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
     private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
@@ -122,6 +123,10 @@ public class WebDriverFactory {
 
     public String getTestEndpoint() {
         return this.webDriverConfiguration.getTestEndpoint();
+    }
+
+    protected Map<String, String> getNamedTestUrls() {
+        return this.webDriverConfiguration.getNamedTestUrls();
     }
 
     public DriverType getDriverType() {
